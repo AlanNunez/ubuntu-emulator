@@ -54,7 +54,7 @@ jobs:
       
       - name: Start Emulator
         run: |
-          $ANDROID_SDK_ROOT/emulator/emulator -avd $EMULATOR_NAME -no-window -no-boot-anim -gpu swiftshader_indirect -camera-back none &
+          $ANDROID_SDK_ROOT/emulator/emulator -avd $EMULATOR_NAME -no-window -no-boot-anim -gpu off -camera-back none &
           sleep 30 # Allow emulator to initialize
 
       - name: Wait for Emulator to Boot
