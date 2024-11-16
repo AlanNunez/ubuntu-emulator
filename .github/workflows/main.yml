@@ -40,7 +40,7 @@ jobs:
           sudo chmod 660 /dev/kvm
           egrep -c '(vmx|svm)' /proc/cpuinfo
           echo -e "[boot]\ncommand = /bin/bash -c 'chown root:kvm /dev/kvm && chmod 660 /dev/kvm'" | sudo tee -a /etc/wsl.conf
-          # echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/${{ env.ANDROID_BUILD_TOOLS_VERSION }}" >> $GITHUB_PATH
+          echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/${{ env.ANDROID_BUILD_TOOLS_VERSION }}" >> $GITHUB_PATH
       
       - name: Install Sdk
         run: |
