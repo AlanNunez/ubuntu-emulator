@@ -40,8 +40,8 @@ jobs:
           sudo chmod 660 /dev/kvm
           egrep -c '(vmx|svm)' /proc/cpuinfo
           echo -e "[boot]\ncommand = /bin/bash -c 'chown root:kvm /dev/kvm && chmod 660 /dev/kvm'" | sudo tee -a /etc/wsl.conf
-          wsl --shutdown
-
+          echo $USER
+          ls -la /dev/kvm
           echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/${{ env.ANDROID_BUILD_TOOLS_VERSION }}" >> $GITHUB_PATH
       
       - name: Install Sdk
@@ -59,7 +59,7 @@ jobs:
           $ANDROID_SDK_ROOT/emulator/emulator -avd $EMULATOR_NAME -no-window -no-boot-anim -gpu off -camera-back none &
           sleep 30 # Allow emulator to initialize
 
-      - name: Wait for Emulator to Boot
-        run: |
-          adb wait-for-device
-          adb shell getprop sys.boot_completed | grep -m 1 '1'
+      # - name: Wait for Emulator to Boot
+      #   run: |
+      #     adb wait-for-device
+      #     adb shell getprop sys.boot_completed | grep -m 1 '1'
